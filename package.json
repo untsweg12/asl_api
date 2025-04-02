@@ -1,0 +1,25 @@
+{
+  "name": "asl_gen",
+  "version": "1.0.0",
+  "description": "asl video generation using luma api",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/untsweg12/main.git"
+  },
+  "author": "Edward Asante",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/untsweg12/main/issues"
+  },
+  "homepage": "https://github.com/untsweg12/main#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "lumaai": "^1.7.1"
+  }
+}
