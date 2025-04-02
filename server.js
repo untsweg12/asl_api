@@ -47,7 +47,7 @@ app.post('/api/asl/video-gen', async (req, res) => {
     res.status(200).json({ videoUrl });
 });
 
-app.get("api/test", (req, res) => {
+app.get("/api/test", (req, res) => {
     res.status(200).json({ message: "Server is up and running" });
 });
 
