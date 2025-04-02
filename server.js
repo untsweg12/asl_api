@@ -4,7 +4,7 @@ import { LumaAI } from 'lumaai';
 import cors from 'cors';
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 10000;
 const EXTENSION_ID = process.env.EXTENSION_ID;
 
 const corsOptions = {
@@ -15,7 +15,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
-app.get('/api/asl/video-gen', async (req, res) => {
+app.post('/api/asl/video-gen', async (req, res) => {
     const client = new LumaAI({
         authToken: process.env.LUMAAI_API_KEY
     });
@@ -48,8 +48,14 @@ app.get('/api/asl/video-gen', async (req, res) => {
 });
 
 app.get("api/test", (req, res) => {
-    res.json({ message: "Server is up and running" });
-})
+    res.status(200).json({ message: "Server is up and running" });
+});
 
+app.get("/", (req, res) => {
+    res.send(`<h1>ASL Video Generation Server</h1>
+    <p>This server is used to generate videos using the Luma AI API.</p>
+    <p>Send POST requests to /api/asl/video-gen with a JSON payload containing a sentence to generate an ASL video.</p>
+    <p>Example: <a href="http://localhost:10000/api/asl/video-gen?sentence=I%20am%20hungry">http://localhost:10000/api/asl/video-gen?sentence=I%20am%20hungry</a></p>`);
+})
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
