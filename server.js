@@ -22,7 +22,7 @@ app.post('/api/asl/video-gen', async (req, res) => {
     const data = JSON.parse(req.body);
 
     let generation = await client.generations.create({
-        prompt: `An ASL tutor signing this sentence: ${data["sentence"]}`,
+        prompt: `An ASL tutor signing this sentence: ${data["prompt"]}`,
         model: "ray-flash-2",
         resolution: "720p",
         duration: "5s",
@@ -47,15 +47,9 @@ app.post('/api/asl/video-gen', async (req, res) => {
     res.status(200).json({ videoUrl });
 });
 
-app.get("/api/test", (req, res) => {
-    res.status(200).json({ message: "Server is up and running" });
-});
-
 app.get("/", (req, res) => {
     res.send(`<h1>ASL Video Generation Server</h1>
-    <p>This server is used to generate videos using the Luma AI API.</p>
-    <p>Send POST requests to /api/asl/video-gen with a JSON payload containing a sentence to generate an ASL video.</p>
-    <p>Example: <a href="http://localhost:10000/api/asl/video-gen?sentence=I%20am%20hungry">http://localhost:10000/api/asl/video-gen?sentence=I%20am%20hungry</a></p>`);
+    <p>This server is used to generate videos using the Luma AI API.</p>`);
 })
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
