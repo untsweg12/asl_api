@@ -19,7 +19,8 @@ app.post('/api/asl/video-gen', async (req, res) => {
     const client = new LumaAI({
         authToken: process.env.LUMAAI_API_KEY
     });
-    const data = JSON.parse(req.body);
+    const data = req.body;
+    console.log(data, req);
 
     let generation = await client.generations.create({
         prompt: `An ASL tutor signing this sentence: ${data["prompt"]}`,
