@@ -20,13 +20,12 @@ app.post('/api/asl/video-gen', async (req, res) => {
         authToken: process.env.LUMAAI_API_KEY
     });
     const data = req.body;
-    console.log(data, req);
 
     let generation = await client.generations.create({
-        prompt: `An ASL tutor signing this sentence: ${data["prompt"]}`,
+        prompt: `An asl tutor [a man in business casual attire] positioned in the middle of the frame, signing this sentence: \"${data.prompt}\".`,
         model: "ray-flash-2",
         resolution: "720p",
-        duration: "5s",
+        duration: "9s",
         loop: true,
     });
 
@@ -44,7 +43,7 @@ app.post('/api/asl/video-gen', async (req, res) => {
         }
     }
 
-    const videoUrl = generation["assets"]["video"];
+    const videoUrl = generation.assets.video;
     res.status(200).json({ videoUrl });
 });
 
