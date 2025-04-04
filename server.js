@@ -20,13 +20,13 @@ app.post('/api/asl/video-gen', async (req, res) => {
         authToken: process.env.LUMAAI_API_KEY
     });
     const data = req.body;
+    const p = `A realistic video of a person fluently signing in American Sign Language (ASL). The person is signing the sentence: '${data.prompt}.' The setting is a well-lit, neutral background to focus on the hand movements and facial expressions. The individual uses expressive body language and precise hand gestures, accurately conveying the meaning of the sentence in ASL. Ensure the signing is natural and fluid, with no writing or drawing motions—focus entirely on ASL hand signs and facial expressions as part of the communication.`
 
     let generation = await client.generations.create({
-        prompt: `An asl tutor [a man in business casual attire] positioned in the middle of the frame, signing this sentence: \"${data.prompt}\".`,
+        prompt: p,
         model: "ray-flash-2",
         resolution: "720p",
         duration: "9s",
-        loop: true,
     });
 
     let completed = false;
